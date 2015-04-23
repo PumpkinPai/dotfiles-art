@@ -1,0 +1,1566 @@
+
+####################################################################################################
+#####     DESCRIPTION     ##########################################################################
+####################################################################################################
+
+	# Metal'n'Stone
+	# GPL
+	# February 21, 2011
+	# wmk69
+
+# This is the style based on pixmap- (pixbuf-) engine. It isn't fast, but I like this engine.
+# I tried make possibly simpliest gtkrc-style, with a small number settings for each one
+# widget, but a good-looking one and funcionally... ;-) This is experimental gtkrc.
+# All widgets (without Gnome-Panel) take the settings from "DEFAULT STYLE" (only one class -
+# - GtkWidget) which sets the properties for all the theme. It makes sure, the theme will have
+# the same look of buttons, frames and other widgets for all applications using GTK+...?
+# I think so... ;-)
+
+# I wrote comments for every widget. They will help you to change some settings or add some widgets
+# (f.e. to change the range-sliders, add vertical progressbar...), but it is simple gtkrc, and
+# changes will not be too much.
+
+# All the Theme is Gtk-Theme and Metacity-Theme.
+
+####################################################################################################
+#####     END DESCRIPTION     ######################################################################
+####################################################################################################
+
+
+
+
+
+####################################################################################################
+#####     DEFAULT STYLE     ########################################################################
+####################################################################################################
+
+# The "DEFAULT STYLE" defines the global settings for objects ( "BOX" is every one "BOX",
+# "SHADOW" is every one "SHADOW"... ). Sometimes it isn't good, if you want a different look
+# of some objects into the theme. You can change it in "OBJECT SETTINGS".
+
+# Very important is order of widgets in this place. Gtk-engine read the code from top to dusk and
+# the first "BOX" will be drawn as every one "BOX", if you don't define the "detail" for the widget.
+# (For example: comment the "detail" from menu-settings, then the image will override some buttons
+# and other widgets using the "BOX" function).
+
+# The "DEFAULT STYLE" (GtkWidget-class) has a highest priority and override the settings of
+# "OBJECT SETTINGS"(lower classes- f.e. GtkButton, GtkRange...- see GTK OBJECT HIERARCHY !!!),
+# if the same widgets are set into "DEFAULT STYLE" and "OBJECT SETTINGS" both.
+
+####################################################################################################
+#####     STYLE PROPERTIES - DEFAULT STYLE     #####################################################
+
+# These settings define the look of desired objects - size, lenght, width, borders, spacing
+# and the colors of backgrounds, text, text on buttons...
+
+# 0 - disable icons on menu and buttons, 1 - enable.
+
+	  gtk-button-images				= 0
+	  gtk-menu-images				= 0
+
+style "default"
+	{
+
+# These lines make a " double frame" around default_button.
+# Borders in brackets { left, right, top, bottom }
+
+	  GtkButton::default_border			= { 3, 3, 3, 3 }
+	  GtkButton::default_outside_border		= { 0, 0, 0, 0 }
+
+# This line sets the scrollbar minimal length.
+
+	  GtkScrollbar::min-slider-length		= 64
+
+# This line sets the size of handle for paned windows.
+
+	  GtkPaned::handle_size				= 7
+
+# These four lines draw alternate background for each one line of lists, trees.
+# Values in quotes "#RED,RED,GREEN,GREEN,BLUE,BLUE"
+
+	  GtkTreeView::odd_row_color			= "#454545"
+	  GtkTreeView::even_row_color			= "#4a4a4a"
+	  GtkListView::odd_row_color			= "#454545"
+	  GtkListView::even_row_color			= "#4a4a4a"
+
+# Color of tekst on buttons, menus...
+
+	  fg[NORMAL]					= "#000000"
+	  fg[PRELIGHT]					= "#969696"
+	  fg[ACTIVE]					= "#000000"
+	  fg[SELECTED]					= "#000000"
+	  fg[INSENSITIVE]				= "#666666"
+
+# Color of backgrounds.("bg_pixmap" is the higher priority than other "bg"!!!)
+
+	  bg_pixmap[NORMAL]				= "bg.png"
+	  bg[NORMAL]					= "#454545"
+	  bg[PRELIGHT]					= "#40382D"
+	  bg[ACTIVE]					= "#666666"
+	  bg[SELECTED]					= "#40382D"
+	  bg[INSENSITIVE]				= "#363636"
+
+# Color of text entries, windows fields.
+
+	  base[NORMAL]					= "#4a4a4a"
+	  base[PRELIGHT]				= "#666666"
+	  base[ACTIVE]					= "#40382D"
+	  base[SELECTED]				= "#40382D"
+	  base[INSENSITIVE]				= "#363636"
+
+# Color of text generally.
+
+	  text[NORMAL]					= "#000000"
+	  text[PRELIGHT]				= "#969696"
+	  text[ACTIVE]					= "#000000"
+	  text[SELECTED]				= "#000000"
+	  text[INSENSITIVE]				= "#666666"
+
+# Default settings.
+
+	  engine "pixmap"
+		{
+
+####################################################################################################
+#####    BACKGROUND - DEFAULT STYLE     ############################################################
+
+# Draws base-background for windows. This is another background which is drawing over the
+# bg_pixmap background and is scalable. Sometimes it works bad. Some windows no draw this
+# background on a whole surface, and it looks like a strange border...
+# This theme works well, but sometimes I use the GtkWindow-class in OBJECT SETTINGS.
+
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  detail			= "base"
+			  file				= "bg.png"
+			  border			= { 0, 0, 0, 0 }
+			  stretch			= TRUE
+			}
+
+# Draws background for text prompts when cursor is over the icon (f.e. on panel-icons).
+
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  detail			= "tooltip"
+			  file				= "bg.png"
+			  border			= { 0, 0, 0, 0 }
+			  stretch			= TRUE
+			}
+
+# Draws background for paned windows...??? I think, it does nothing...(in this style!!!)
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "paned"
+			  file				= "bg.png"
+			  border			= { 0, 0, 0, 0 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     ARROWS - DEFAULT STYLE     ###############################################################
+
+# Draws arrows for all occasions.
+
+# Up arrows.
+
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  overlay_file			= "arrow_up_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  overlay_file			= "arrow_up_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  overlay_file			= "arrow_up_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  overlay_file			= "arrow_up_insensitive.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  overlay_file			= "arrow_up_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+
+# Down arrows.
+
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  overlay_file			= "arrow_down_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  overlay_file			= "arrow_down_insensitive.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+
+# Left arrows.
+
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  overlay_file			= "arrow_left_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  overlay_file			= "arrow_left_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  overlay_file			= "arrow_left_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  overlay_file			= "arrow_left_insensitive.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  overlay_file			= "arrow_left_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+
+# Right arrows.
+
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  overlay_file			= "arrow_right_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  overlay_file			= "arrow_right_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  overlay_file			= "arrow_right_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  overlay_file			= "arrow_right_insensitive.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+		  image
+			{
+			  function			= ARROW
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  overlay_file			= "arrow_right_active.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+
+####################################################################################################
+#####     OPTION MENU ARROWS - DEFAULT STYLE     ###################################################
+
+# Draws arrows for OptionMenuButtons and ComboButtons.
+
+		  image
+			{
+			  function			= TAB
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  overlay_file			= "arrow_down_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= TAB
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= TAB
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= TAB
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  overlay_file			= "arrow_down_insensitive.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= TAB
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  overlay_file			= "arrow_down_active.png"
+			  overlay_stretch		= FALSE
+			}
+
+####################################################################################################
+#####     FOCUS - DEFAULT STYLE     ################################################################
+
+# Draws the focus around default widget (if the image is transparent, widget has no focus;
+# but if you comment these lines, GTK will be draw the "default" one).
+
+		  image
+			{
+			  function			= FOCUS
+			  recolorable			= TRUE
+			  overlay_file			= "null.png"
+			  overlay_border		= { 0, 0, 0, 0 }
+			  overlay_stretch		= TRUE
+			}
+
+####################################################################################################
+#####     RESIZE - DEFAULT STYLE     ###############################################################
+
+# Draws resize-grip in the right-down corner of window (if the image is transparent,
+# window has no resize-grip, but if you comment these lines, GTK will be draw the "default" one).
+
+		  image
+			{
+			  function			= RESIZE_GRIP
+			  recolorable			= TRUE
+			  detail			= "statusbar"
+			  overlay_file			= "null.png"
+			  overlay_border		= { 0, 0, 0, 0 }
+			  overlay_stretch		= FALSE
+			}
+
+####################################################################################################
+#####     LINES - DEFAULT STYLE     ################################################################
+
+# Draws horizontal and vertical lines.
+
+		  image
+			{
+			  function			= HLINE
+			  recolorable			= TRUE
+			  file				= "line_h.png"
+			  border			= { 0, 0, 1, 1 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= VLINE
+			  recolorable			= TRUE
+			  file				= "line_v.png"
+			  border			= { 1, 1, 0, 0 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     ENTRY - DEFAULT STYLE     ################################################################
+
+# Draws background for entry widgets (f.e. text).
+
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  detail			= "entry_bg"
+			  file				= "entry_insensitive.png"
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  detail			= "entry_bg"
+			  file				= "entry_normal.png"
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     SHADOWS - DEFAULT STYLE     ##############################################################
+
+# Draws all shadows.
+
+# Draws shadows without any gap.
+
+		  image
+			{
+			  function			= SHADOW
+			  recolorable			= TRUE
+			  shadow			= IN
+			  file				= "shadow_normal.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= SHADOW
+			  recolorable			= TRUE
+			  shadow			= OUT
+			  file				= "shadow_active.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= SHADOW
+			  recolorable			= TRUE
+			  shadow			= ETCHED_IN
+			  file				= "frame_normal.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= SHADOW
+			  recolorable			= TRUE
+			  shadow			= ETCHED_OUT
+			  file				= "frame_insensitive.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+
+# Draws shadows with a gap on one side.
+
+		  image
+			{
+			  function			= SHADOW_GAP
+			  recolorable			= TRUE
+			  file				= "frame_normal.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_start_file		= "frame_start.png"
+			  gap_start_border		= { 2, 0, 1, 1 }
+			  gap_end_file			= "frame_end.png"
+			  gap_end_border		= { 0, 2, 1, 1 }
+			  gap_side			= TOP
+			}
+
+####################################################################################################
+#####     CHECK BUTTON - DEFAULT STYLE     #########################################################
+
+# Draws checks for all the style.
+
+# Shadow out.
+
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+
+# Shadow in.
+
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  shadow			= IN
+			  overlay_file			= "check_active.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  shadow			= IN
+			  overlay_file			= "check_active.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  shadow			= IN
+			  overlay_file			= "check_active.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  shadow			= IN
+			  overlay_file			= "check_insensitive.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= CHECK
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  shadow			= IN
+			  overlay_file			= "check_active.png"
+			  overlay_stretch		= FALSE
+			}
+
+####################################################################################################
+#####     RADIO BUTTON - DEFAULT STYLE     #########################################################
+
+# Draws options for all the style.
+
+# Shadow out.
+
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  shadow			= OUT
+			  overlay_file			= "check_normal.png"
+			  overlay_stretch		= FALSE
+			}
+
+# Shadow in.
+
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  shadow			= IN
+			  overlay_file			= "check_active_alt.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  shadow			= IN
+			  overlay_file			= "check_active_alt.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  shadow			= IN
+			  overlay_file			= "check_active_alt.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  shadow			= IN
+			  overlay_file			= "check_insensitive.png"
+			  overlay_stretch		= FALSE
+			}
+		  image
+			{
+			  function			= OPTION
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  shadow			= IN
+			  overlay_file			= "check_active_alt.png"
+			  overlay_stretch		= FALSE
+			}
+
+####################################################################################################
+#####     BUTTON FOR CHECK AND RADIO - DEFAULT STYLE     ###########################################
+
+# Draws active button for the check and radio-widget when the cursor is over the widget.
+
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  detail			= "checkbutton"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     BUTTON FOR EXPANDER - DEFAULT STYLE     ##################################################
+
+# Draws active button for expander, when the cursor is over the widget.
+
+		  image
+			{
+			  function			= FLAT_BOX
+			  recolorable			= TRUE
+			  detail			= "expander"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     HANDLES AND HANDLEBOXES - DEFAULT STYLE     ##############################################
+
+# Draws handles and handleboxes.
+
+# Draws handlebox for resizing paned windows.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "handlebox_bin"
+			  overlay_file			= "button_normal.png"#"ruler.png"
+			  overlay_border		= { 5, 5, 5, 5 }
+			  overlay_stretch		= TRUE
+			}
+
+# Draws handles for resizing paned windows.
+
+		  image
+			{
+			  function			= HANDLE
+			  recolorable			= TRUE
+			  overlay_file			= "handle_vert_thumb.png"
+			  overlay_border		= { 1, 1, 0, 0 }
+			  overlay_stretch		= FALSE
+			  orientation			= VERTICAL
+			}
+		  image
+			{
+			  function			= HANDLE
+			  recolorable			= TRUE
+			  overlay_file			= "handle_horiz_thumb.png"
+			  overlay_border		= { 0, 0, 1, 1 }
+			  overlay_stretch		= FALSE
+			  orientation			= HORIZONTAL
+			}
+
+####################################################################################################
+#####     RULER - DEFAULT STYLE     ################################################################
+
+# Draws rulers (f.e. background for the scale for GIMP picture-window).
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "vruler"
+			  file				= "ruler.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "hruler"
+			  file				= "ruler.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			}
+
+
+####################################################################################################
+#####     TROUGH - DEFAULT STYLE     ###############################################################
+
+# Draws trough detail for progressbars, scrollbars and range (scale). If you want a different
+# horizontal and vertical trough, uncomment the line, and write another one settings for
+# the vertical trough.
+
+# In this style you can't make different trough for scrollbars or range. This trough is for
+# all widgets using trough. You can only make the horizontal or vertical one.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "trough"
+			  file				= "trough.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+#			  orientation			= HORIZONTAL
+			}
+
+####################################################################################################
+#####     PROGRESSBAR - DEFAULT STYLE     ##########################################################
+
+# Draws the progress-bars. If you want a different horizontal and vertical progressbar,
+#  uncomment the line, and write another one settings for the vertical progressbar.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "bar"
+			  file				= "progressbar.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+#			  orientation			= HORIZONTAL
+			}
+
+####################################################################################################
+#####     RANGE AND SCALE - DEFAULT STYLE     ######################################################
+
+# Draws range and scale.
+
+# Horizontal range (scale).
+
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "hscale"
+			  state				= NORMAL
+			  file				= "scrollbar_horiz_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "hscale"
+			  state				= PRELIGHT
+			  file				= "scrollbar_horiz_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "hscale"
+			  state				= INSENSITIVE
+			  file				= "scrollbar_horiz_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+
+# Vertical range (scale).
+
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "vscale"
+			  state				= NORMAL
+			  file				= "scrollbar_vert_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "vscale"
+			  state				= PRELIGHT
+			  file				= "scrollbar_vert_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  detail			= "vscale"
+			  state				= INSENSITIVE
+			  file				= "scrollbar_vert_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+
+####################################################################################################
+#####     SCROLLBARS AND STEPPERS - DEFAULT STYLE     ##############################################
+
+# Draws scrollbars and steppers.
+
+# Draws horizontal scrollbars.
+
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_horiz_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_horiz_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_horiz_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= HORIZONTAL
+			}
+
+# Draws vertical scrollbars.
+
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_vert_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_vert_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+		  image
+			{
+			  function			= SLIDER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_vert_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  orientation			= VERTICAL
+			}
+
+# Draws steppers for scrollbars. If the steppers are not set here, Gtk-engine use
+# the buttons-pixmaps for drawing the steppers.
+
+# Draws normal steppers.
+
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_vert_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_up_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_vert_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_down_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_horiz_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_left_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  file				= "scrollbar_horiz_normal.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_right_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+
+# Draws prelight steppers.
+
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_vert_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_up_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_vert_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_down_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_horiz_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_left_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "scrollbar_horiz_active.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_right_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+
+# Draws insensitive steppers.
+
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_vert_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_up_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= UP
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_vert_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_down_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= DOWN
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_horiz_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_left_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= LEFT
+			}
+		  image
+			{
+			  function			= STEPPER
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "scrollbar_horiz_insensitive.png"
+			  border			= { 3, 3, 3, 3 }
+			  stretch			= TRUE
+			  overlay_file			= "arrow_right_normal.png"
+			  overlay_stretch		= FALSE
+			  arrow_direction		= RIGHT
+			}
+
+####################################################################################################
+#####     MENU - DEFAULT STYLE     #################################################################
+
+# Draws the menu-list.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "menu"
+			  file				= "table.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     MENUBAR - DEFAULT STYLE     ##############################################################
+
+# Draws the menu-bar for windows.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "menubar"
+			  file				= "table.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     MENUITEM - DEFAULT STYLE     #############################################################
+
+# Draws the menu-button for selected theme.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "menuitem"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     NOTEBOOK - DEFAULT STYLE     #############################################################
+
+# Draws the notebooks with, and without extensions.
+
+# Draws normal extensions for notebook.
+
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  file				= "extension_top_normal.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= BOTTOM
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  file				= "extension_top_normal.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= TOP
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  file				= "extension_left_normal.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= LEFT
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  file				= "extension_left_normal.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= RIGHT
+			}
+
+# Draws selected extensions for notebook.
+
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  file				= "extension_top_active.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= BOTTOM
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  file				= "extension_bottom_active.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= TOP
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  file				= "extension_left_active.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= RIGHT
+			}
+		  image
+			{
+			  function			= EXTENSION
+			  recolorable			= TRUE
+			  file				= "extension_right_active.png"
+			  border			= { 4, 4, 4, 4 }
+			  stretch			= TRUE
+			  gap_side			= LEFT
+			}
+
+# Draws notebooks with gap on one side.
+
+		  image
+			{
+			  function			= BOX_GAP
+			  recolorable			= TRUE
+			  detail			= "notebook"
+			  file				= "notebook.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_file			= "gap_top.png"
+			  gap_border			= { 2, 2, 0, 0 }
+			  gap_start_file		= "null.png"
+			  gap_end_file			= "null.png"
+			  gap_side			= TOP
+			}
+		  image
+			{
+			  function			= BOX_GAP
+			  recolorable			= TRUE
+			  detail			= "notebook"
+			  file				= "notebook.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_file			= "gap_bottom.png"
+			  gap_border			= { 2, 2, 0, 0 }
+			  gap_start_file		= "null.png"
+			  gap_end_file			= "null.png"
+			  gap_side			= BOTTOM
+			}
+		  image
+			{
+			  function			= BOX_GAP
+			  recolorable			= TRUE
+			  detail			= "notebook"
+			  file				= "notebook.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_file			= "gap_left.png"
+			  gap_border			= { 0, 0, 2, 2 }
+			  gap_start_file		= "null.png"
+			  gap_end_file			= "null.png"
+			  gap_side			= LEFT
+			}
+		  image
+			{
+			  function			= BOX_GAP
+			  recolorable			= TRUE
+			  detail			= "notebook"
+			  file				= "notebook.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_file			= "gap_right.png"
+			  gap_border			= { 0, 0, 2, 2 }
+			  gap_start_file		= "null.png"
+			  gap_end_file			= "null.png"
+	 		  gap_side			= RIGHT
+			}
+
+# Draws notebooks without extension and gap (Is this overridden by something ??? CHECK IT !!!).
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "notebook"
+			  file				= "notebook.png"
+			  border			= { 2, 2, 2, 2 }
+			  stretch			= TRUE
+			  gap_side			= TOP
+			}
+
+####################################################################################################
+#####     BUTTONS AND BOXES - DEFAULT STYLE     ####################################################
+
+# Draws all of the buttons (...OptionMenu, ToggleButtons, SpinButtons...) and boxes,
+# if they haven't already been covered.
+
+# Earlier version of this gtkrc set the NORMAL-BOX (without defined "detail") for all buttons,
+# but I saw, it override another widgets using the BOX-function, not only draws the buttons.
+# That is why I wrote the different code (with "detail" for every one widget) for NORMAL state
+# of Steppers, Buttons, OptionMenu and SpinButtons. Other states are drawn correctly
+# and don't override anything.
+
+# Draws the "default-button".
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  detail			= "buttondefault"
+			  file				= "button_normal.png"
+			  border			= { 6, 6, 6, 6 }
+			  stretch			= TRUE
+			}
+
+# Draws the NORMAL state of Buttons.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  detail			= "button"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+# Draws the NORMAL state of OptionMenu.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  detail			= "optionmenu"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+# Draws the NORMAL state of SpinButtons.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  detail			= "spinbutton_up"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= NORMAL
+			  detail			= "spinbutton_down"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+# Draws other states of all buttons (...OptionMenu, ToggleButtons, SpinButtons...) - PRELIGHT,
+# ACTIVE, INSENSITIVE, SELECTED.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= PRELIGHT
+			  file				= "button_prelight.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= ACTIVE
+			  file				= "button_active.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= INSENSITIVE
+			  file				= "button_insensitive.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  state				= SELECTED
+			  file				= "button_active.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+
+####################################################################################################
+#####     TOOLBAR - DEFAULT STYLE     ##############################################################
+
+# Draws the toolbars for windows.
+
+		  image
+			{
+			  function			= BOX
+			  recolorable			= TRUE
+			  detail			= "toolbar"
+			  file				= "button_normal.png"
+			  border			= { 5, 5, 5, 5 }
+			  stretch			= TRUE
+			}
+		}
+	}
+class "GtkWidget"			style "default"
+
+####################################################################################################
+#####     END DEFAULT STYLE     ####################################################################
+####################################################################################################
+
+
+
+
+
+####################################################################################################
+#####     OBJECT SETTINGS     ######################################################################
+####################################################################################################
+
+# This part define settings for a several widget from GTK OBJECT HIERARCHY. Here you can set
+# a different look for each one object (f.e. Buttons, OptionMenu, ToggleButtons...). You must
+# write a new "style-settings" code for desired object and define "class" ("widget_class",
+# "widget") of this object.
+
+# If desired object is set into "DEFAULT STYLE" you must comment these settings there, because
+# they override settings over here. Check it!
+
+# The classes which have higher priority in GTK OBJECT HIERARCHY override the lower classes
+# (of course, if the lower class is not defined!!!).
+
+# Stars before and behind class set the same look of every object ("*Button*" is every Button!!!).
+
+####################################################################################################
+#####     GNOME PANEL - OBJECT SETTINGS     ########################################################
+
+# Draws the Gnome-Panel. Normally the panel takes image from bg_pixmap, or from the first
+# defined FLAT_BOX. If you comment these settings, the panel will be like the bg_pixmap.
+
+# This panel-pixmap settings override "bg_pixmap" into the Dialog-Windows. I use the background
+# settings on the top of this gtkrc (image of "base"-detail) for drawing normal background for
+# all windows.If I didn't use this, the Dialog-Windows look like made with a few panels.
+
+# Stars before and behind "Panel" set every panel like this.
+
+style "panel"
+	{
+	  xthickness					= 1
+	  ythickness					= 1
+	  bg_pixmap[NORMAL]				= "panel.png"
+	}
+class "*Panel*"				style "panel"
+
+####################################################################################################
+######     END OBJECT SETTINGS     #################################################################
+####################################################################################################
+

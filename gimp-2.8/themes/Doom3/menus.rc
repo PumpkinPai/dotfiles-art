@@ -1,0 +1,424 @@
+#technix menu and menubar settings
+#Modified and added to by Padster
+
+style "menubar"
+{
+
+fg[PRELIGHT] = "#ffffff"
+fg[ACTIVE] = "#e4ede9"
+fg[NORMAL] = "#e4ede9"
+fg[SELECTED] = "#ffffff"
+fg[INSENSITIVE] = "#55716f"
+
+text[PRELIGHT] = "#ffffff" #prelight text on optionmenu menus
+text[ACTIVE] = "#e4ede9"
+text[NORMAL] = "#e4ede9"
+text[SELECTED] = "#ffffff"
+text[INSENSITIVE] = "#55716f"
+
+
+
+
+xthickness = 2 #space between menuBAR entries (horizontal)
+ythickness = 4 #space on top/bottom of menuBAR entries (vertical)
+
+
+
+engine "pixmap"
+{
+
+	image
+	{
+		function	= BOX
+		state		= NORMAL
+		file		= "/menubar/menubar.png"
+		border		= { 0, 0, 0, 0 }
+		stretch		= FALSE
+	}
+
+	image
+	{
+		function	= BOX
+		recolorable	= TRUE
+		state		= PRELIGHT
+		file		= "/menu/menuitem.png"
+		border		= { 3, 7, 7, 3 }
+		stretch		= TRUE
+	}
+
+	image
+	{
+		function	= BOX
+		state		= ACTIVE
+		file		= "/menubar/menubar.png"
+		border		= { 0, 0, 0, 0 }
+		stretch		= FALSE
+	}
+
+	image
+	{
+		function	= BOX
+		state		= SELECTED
+		file		= "/menubar/menubar.png"
+		border		= { 0, 0, 0, 0 }
+		stretch		= FALSE
+	}
+
+	image
+	{
+		function	= BOX
+		state		= INSENSITIVE
+		file		= "/menubar/menubar.png"
+		border		= { 0, 0, 0, 0 }
+		stretch		= FALSE
+	}
+}
+
+}
+
+style "menu"
+{
+fg[PRELIGHT] = "#ffffff"
+fg[ACTIVE] = "#c0d0c4"
+fg[NORMAL] = "#c0d0c4"
+fg[SELECTED] = "#ffffff"
+fg[INSENSITIVE] = "#55716f"
+
+text[PRELIGHT] = "#ffffff" #prelight text on optionmenu menus
+text[ACTIVE] = "#c0d0c4"
+text[NORMAL] = "#c0d0c4"
+text[SELECTED] = "#ffffff"
+text[INSENSITIVE] = "#55716f"
+
+
+xthickness = 3 #left/right space on menus
+ythickness = 2 #top/bottom space on menus
+
+
+bg_pixmap [NORMAL] = "/menu/menu-bg.png"
+
+
+engine "pixmap"
+{
+
+	image
+	{
+		function	= BOX
+		recolorable	= TRUE
+		detail		= "menu"
+		file		= "/menu/menu.png"
+		border		= {24, 1, 142, 51}
+		stretch		= TRUE
+		overlay_file	= "/menu/menu-overlay.png"
+		overlay_border	= {1,1,1,1}
+		overlay_stretch	= TRUE
+	}
+
+
+}
+}
+
+style "menuitem"
+{
+
+fg[PRELIGHT] = "#ffffff"
+fg[ACTIVE] = "#c0d0c4"
+fg[NORMAL] = "#c0d0c4"
+fg[SELECTED] = "#ffffff"
+fg[INSENSITIVE] = "#55716f"
+
+text[PRELIGHT] = "#ffffff" #prelight text on optionmenu menus
+text[ACTIVE] = "#c0d0c4"
+text[NORMAL] = "#c0d0c4"
+text[SELECTED] = "#ffffff"
+text[INSENSITIVE] = "#55716f"
+
+xthickness = 0
+ythickness = 3 #space in between menu entries (vertical)
+
+engine "pixmap"
+{
+
+	image
+	{
+		function	= BOX
+		recolorable	= TRUE
+		file		= "/menu/menuitem.png"
+		border		= {3, 7, 7, 3}
+		stretch		= TRUE
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= NORMAL
+		overlay_file	= "/arrows/arrow-up.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= PRELIGHT
+		overlay_file	= "/arrows/arrow-up-menu.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= ACTIVE
+		overlay_file	= "/arrows/arrow-up-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= SELECTED
+		overlay_file	= "/arrows/arrow-up-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= INSENSITIVE
+		overlay_file	= "/arrows/arrow-up-insensitive.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= UP
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= NORMAL
+		overlay_file	= "/arrows/arrow-down.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= DOWN
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= PRELIGHT
+		overlay_file	= "/arrows/arrow-down-menu.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= DOWN
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= ACTIVE
+		overlay_file	= "/arrows/arrow-down-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= DOWN
+	}
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= SELECTED
+		overlay_file	= "/arrows/arrow-down-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= DOWN
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= INSENSITIVE
+		overlay_file	= "/arrows/arrow-down-insensitive.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= DOWN
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= NORMAL
+		overlay_file	= "/arrows/arrow-left.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= LEFT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= PRELIGHT
+		overlay_file	= "/arrows/arrow-left-menu.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= LEFT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= ACTIVE
+		overlay_file	= "/arrows/arrow-left-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= LEFT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= SELECTED
+		overlay_file	= "/arrows/arrow-left-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= LEFT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= INSENSITIVE
+		overlay_file	= "/arrows/arrow-left-insensitive.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= LEFT
+	}
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= NORMAL
+		overlay_file	= "/arrows/arrow-right.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= RIGHT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= PRELIGHT
+		overlay_file	= "/arrows/arrow-right-menu.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= RIGHT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= ACTIVE
+		overlay_file	= "/arrows/arrow-right-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= RIGHT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= SELECTED
+		overlay_file	= "/arrows/arrow-right-prelight.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= RIGHT
+	}
+
+	image
+	{
+		function	= ARROW
+		recolorable	= TRUE
+		state		= INSENSITIVE
+		overlay_file	= "/arrows/arrow-right-insensitive.png"
+		overlay_border	= {2,2,2,2}
+		overlay_stretch	= FALSE
+		arrow_direction	= RIGHT
+	}
+
+
+
+}
+
+}
+
+style "menuitem-text" = "menuitem"
+{
+	#xthickness = 0
+	#ythickness = 0
+
+text[PRELIGHT] = "#ffffff" #prelight text on optionmenu menus
+text[ACTIVE] = "#c0d0c4"
+text[NORMAL] = "#c0d0c4"
+text[SELECTED] = "#ffffff"
+text[INSENSITIVE] = "#55716f"
+fg[PRELIGHT] = "#ffffff"
+fg[ACTIVE] = "#c0d0c4"
+fg[NORMAL] = "#c0d0c4"
+fg[SELECTED] = "#ffffff"
+fg[INSENSITIVE] = "#55716f"
+
+}
+
+style "separator-menu-item"
+{
+	xthickness = 0
+	ythickness = 0
+	
+  engine "pixmap"
+  {
+    image
+    {
+      function	  = HLINE
+      recolorable = TRUE
+      file	  = "menu/menu-separator.png"
+      border	  = { 0, 0, 0, 0 }
+      stretch	  = TRUE
+    }
+  }
+}
+
+widget_class "*<GtkSeparatorMenuItem>*" 	style "separator-menu-item"
+
+class "GtkMenu"        				style "menu"
+class "GtkMenuItem"    				style "menuitem"
+class "GtkImageMenuItem"    			style "menuitem"
+class "GtkTearoffMenuItem"    			style "menuitem"
+class "GtkItem"    				style "menuitem"
+widget_class "*.<GtkMenuItem>.*" 		style:highest "menuitem-text"
+widget_class"*MenuItem*"        		style "menuitem"
+widget_class"*.GtkMenuItem.*"        		style "menuitem"
+widget_class"*.GtkAccelMenuItem.*"        	style "menuitem"
+class "GtkMenuBar"				style "menubar"
+class "*MenuBar*"				style "menubar"
+widget_class "*MenuBar.*"			style "menubar"

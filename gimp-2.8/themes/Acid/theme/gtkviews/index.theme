@@ -1,0 +1,6 @@
+include "gtkiconview.theme"
+include "gtkviewsfixes.theme"
+include "gtkviews.theme"
+include "gtkviewsheader.theme"
+include "xfdesktop.theme"
+

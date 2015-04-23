@@ -1,0 +1,30 @@
+style "xfcetitleddialog"
+{
+GtkWidget::wide-separators = 1
+GtkWidget::separator-height= 2
+engine "pixmap"
+{
+image
+{
+function = BOX
+detail = "hseparator"
+overlay_file = "image/xfcedialogheader.gif"
+overlay_stretch	= TRUE
+}
+}
+}
+widget_class "*XfceTitledDialog*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*XfceSettingsManagerDialog*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*ThunarPreferencesDialog*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*XfceMixerWindow*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*PanelItemDialog*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*TvmPreferencesDialog*GtkHSeparator*" style "xfcetitleddialog"
+widget_class "*XfcePluginDialog*GtkHSeparator*" style "xfcetitleddialog"
+style "xfceheaders"
+{
+fg[NORMAL] = "#deb887"
+text[NORMAL] = "#deb887"
+base[NORMAL] = "#332e2e"
+bg[NORMAL] = "#332e2e"
+}
+class "*XfceHeading*" style "xfceheaders"

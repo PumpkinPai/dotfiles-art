@@ -1,0 +1,11 @@
+style "chromium"
+{
+ChromeGtkFrame::frame-color = "#332e2e"
+ChromeGtkFrame::inactive-frame-color = "#332e2e"
+ChromeGtkFrame::frame-gradient-size = 0
+ChromeGtkFrame::frame-gradient-color = "#332e2e"
+ChromeGtkFrame::scrollbar-trough-color = "#332e2e"
+ChromeGtkFrame::scrollbar-slider-prelight-color = "#DEB887"
+ChromeGtkFrame::scrollbar-slider-normal-color = "#DEB887"
+}
+class "ChromeGtkFrame" style "chromium"

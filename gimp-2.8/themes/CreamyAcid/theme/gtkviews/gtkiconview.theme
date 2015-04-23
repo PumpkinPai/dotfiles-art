@@ -1,0 +1,16 @@
+style "gtkiconview"
+{
+fg[SELECTED] = "#deb887"
+fg[ACTIVE] = "#deb887"
+base[NORMAL] = "#332e2e"
+base[SELECTED] = "#332e2e"
+base[ACTIVE] = "#332e2e"
+GtkIconView::selection-box-alpha = 60
+GtkIconView::selection_box_color = "#332e2e"
+XfdesktopIconView::label-alpha = 80
+engine "mist" 
+{
+}
+}
+widget_class "*GtkIconView*" style "gtkiconview"
+widget_class "*XfceIconView*" style "gtkiconview"

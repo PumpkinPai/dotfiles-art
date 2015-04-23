@@ -1,0 +1,193 @@
+style "nautilus-breadcrumbs"
+{
+	xthickness = 2
+	ythickness = 2
+	
+	GtkButton::child-displacement-y		= 0
+	GtkButton::child-displacement-x		= 0
+	GtkButton::inner-border			= { 0, 4, 0, 0}
+
+	engine "pixmap"
+	{	
+		image
+		{
+			function        	= BOX
+			shadow			= OUT
+			recolorable     	= TRUE
+			state			= PRELIGHT
+			file			= "breadcrumbs/breadcrumb_prelight.png"
+			border			= {3, 3, 7, 7}
+			stretch         	= TRUE
+		}		
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			shadow			= IN
+			state			= PRELIGHT
+			file			= "breadcrumbs/breadcrumb_prelight.png"
+			border			= {3, 3, 7, 7}
+			stretch         	= TRUE
+		}
+	  
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= NORMAL
+			file			= "breadcrumbs/breadcrumb_normal.png"
+			border			= {0, 3, 7, 7}
+			stretch         	= TRUE
+		}
+		
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= PRELIGHT
+			file			= "breadcrumbs/breadcrumb_active.png"
+			border			= {3, 3, 7, 7}
+			stretch         	= TRUE
+		}
+	
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= ACTIVE
+			file			= "breadcrumbs/breadcrumb_active.png"
+			border			= {3, 3, 7, 7}
+			stretch         	= TRUE
+		}  
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= INSENSITIVE
+			file			= "breadcrumbs/breadcrumb_normal.png"
+			border			= {0, 3, 7, 7}
+			stretch         	= TRUE
+		} 
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= SELECTED
+			file			= "breadcrumbs/breadcrumb_active.png"
+			border			= {0, 3, 7, 7}
+			stretch         	= TRUE
+		}
+	}
+}
+
+widget_class "*NautilusPathBar.*ToggleButton" style "nautilus-breadcrumbs" # afecta solo a los botones de direcciones :)
+
+
+style "nautilus-left-slider"
+{
+	xthickness = 0
+	ythickness = 0
+	
+	engine "pixmap"
+	{
+		image {
+			function 		= BOX
+			file			= "breadcrumbs/left_slider_normal.png"
+			border			= { 11, 3, 11, 7 }
+			stretch			= TRUE
+		}
+	}
+
+}
+
+widget "Nautilus*left_slider*" style "nautilus-left-slider" # afecta solo al boton a la izquierda del breadcrumb
+
+
+
+style "nautilus-right-slider"
+{	
+	xthickness = 0
+	ythickness = 0
+	
+	engine "pixmap"
+	{
+		image {
+			function 		= BOX
+			file			= "breadcrumbs/right_slider_normal.png"
+			border			= { 0, 11, 11, 7 }
+			stretch			= TRUE
+		}
+	}
+}
+
+widget "Nautilus*right_slider*" style "nautilus-right-slider" # afecta solo al boton a la derecha del breadcrumb
+
+style "pixmap-mode-button"
+{
+	engine "pixmap"
+	{	
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= PRELIGHT
+			file			= "/button/viewmode-button/mode_prelight.png"
+			border			= { 11, 11, 11, 7 }
+			stretch         	= TRUE
+		}
+	  
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= NORMAL
+			file			= "/button/viewmode-button/mode_normal.png"
+			border			= { 11, 11, 11, 7 }
+			stretch         	= TRUE
+		}
+	
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= ACTIVE
+			file			= "/button/viewmode-button/mode_pressed.png"
+			border			= { 11, 11, 11, 7 }
+			stretch         	= TRUE
+		}  
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= INSENSITIVE
+			file			= "/button/viewmode-button/mode_normal.png"
+			border			= { 11, 11, 11, 7 }
+			stretch         	= TRUE
+		} 
+
+		image
+		{
+			function        	= BOX
+			recolorable     	= TRUE
+			state			= SELECTED
+			file			= "/button/viewmode-button/mode_pressed.png"
+			border			= { 11, 11, 11, 7 }
+			stretch         	= TRUE
+		}
+	}
+}
+
+style "nautilus-sidebar"
+{
+bg[NORMAL] = @bg_color #define nautilus sidebar background colour
+}
+
+#nautilus-elementary viewmode-button
+widget 		"*ModeButton*"			style "pixmap-mode-button"
+#nautilus side bar
+widget_class	"*Nautilus*NautilusSidePane*"	style "nautilus-sidebar"
